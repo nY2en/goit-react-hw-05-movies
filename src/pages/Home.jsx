@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import api from 'services/api';
+import MovieList from 'components/MoviesList';
 
 export default function HomePage() {
   const [data, setData] = useState(null);
   const [status, setStatus] = useState('idle');
-
   const location = useLocation();
 
   useEffect(() => {
@@ -20,15 +20,7 @@ export default function HomePage() {
     return (
       <>
         <h1>Trending Today</h1>
-        <ul>
-          {data.map(el => (
-            <li key={el.id}>
-              <Link state={{ from: location }} to={`movies/${el.id}`}>
-                {el.original_title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <MovieList data={data} location={location} />
       </>
     );
   }

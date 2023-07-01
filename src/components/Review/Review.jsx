@@ -5,12 +5,11 @@ import api from 'services/api';
 export default function Review() {
   const [data, setData] = useState(null);
   const [status, setStatus] = useState('idle');
-
   const { movieId } = useParams();
 
   useEffect(() => {
-    api.fetchMovieReview(movieId).then(data => {
-      setData(data.results);
+    api.fetchMovieReview(movieId).then(({ results }) => {
+      setData(results);
 
       setStatus('resolved');
     });
@@ -21,10 +20,10 @@ export default function Review() {
       <h1>There is no reviews</h1>
     ) : (
       <ul>
-        {data.map(el => (
-          <li key={el.id}>
-            <h2>Author: {el.author}</h2>
-            <p>{el.content}</p>
+        {data.map(({ id, author, content }) => (
+          <li key={id}>
+            <h2>Author: {author}</h2>
+            <p>{content}</p>
           </li>
         ))}
       </ul>
