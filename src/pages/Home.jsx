@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import api from 'services/api';
-import MovieList from 'components/MoviesList';
+import Title from 'components/Title';
+import MovieList from 'components/MovieList';
 
 export default function HomePage() {
   const [data, setData] = useState(null);
@@ -19,7 +20,7 @@ export default function HomePage() {
   if (status === 'resolved') {
     return (
       <>
-        <h1>Trending Today</h1>
+        <Title>Trending Today</Title>
         <MovieList data={data} location={location} />
       </>
     );

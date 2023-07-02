@@ -1,5 +1,16 @@
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {
+  StyledLink,
+  MovieBlock,
+  MovieInfoBlock,
+  Ul,
+  Li,
+  H2,
+  Img,
+  LiAdditional,
+  StyledLinkToAdditional,
+  UlAdditional,
+} from './MovieCard.styled';
 
 export default function MovieCard({ data, backLinkLocationRef, year }) {
   const {
@@ -13,38 +24,40 @@ export default function MovieCard({ data, backLinkLocationRef, year }) {
 
   return (
     <>
-      <Link to={backLinkLocationRef.current}>Go Back</Link>
+      <StyledLink to={backLinkLocationRef.current}>Go Back</StyledLink>
 
-      <div style={{ display: 'flex' }}>
-        <img
+      <MovieBlock>
+        <Img
           src={`https://image.tmdb.org/t/p/w400/${poster_path}`}
           alt={tagline}
         />
-        <div>
+        <MovieInfoBlock>
           <h1>
             {original_title} ({year})
           </h1>
-          <p>User score: {Math.round(vote_average * 10)} %</p>
-          <h2>Overview</h2>
+          <p>User score: {Math.round(vote_average * 10)}%</p>
+          <H2>Overview</H2>
           <p>{overview}</p>
-          <h2>Genres</h2>
-          <ul>
+          <H2>Genres</H2>
+          <Ul>
             {genres.map(({ id, name }) => (
-              <li key={id}>{name}</li>
+              <Li key={id}>{name}</Li>
             ))}
-          </ul>
-        </div>
-      </div>
+          </Ul>
+        </MovieInfoBlock>
+      </MovieBlock>
       <div>
-        <h2> Additional information</h2>
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
-        </ul>
+        <H2> Additional information</H2>
+        <UlAdditional>
+          <LiAdditional>
+            <StyledLinkToAdditional to="cast">Cast</StyledLinkToAdditional>
+          </LiAdditional>
+          <LiAdditional>
+            <StyledLinkToAdditional to="reviews">
+              Reviews
+            </StyledLinkToAdditional>
+          </LiAdditional>
+        </UlAdditional>
       </div>
     </>
   );

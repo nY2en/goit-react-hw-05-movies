@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import api from 'services/api';
 import Searchbar from 'components/Searchbar';
-import MovieList from 'components/MoviesList';
+import MovieList from 'components/MovieList';
 
 export default function Movies() {
   const [data, setData] = useState(null);
